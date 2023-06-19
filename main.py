@@ -119,7 +119,7 @@ def decrypt(table):
 
     f = open('answer.txt', 'w')
     to_write = ''
-    to_write += 'table: ' + table + '\n' + 'plain_text: ' + plait_text
+    to_write += 'Table: ' + ''.join(str(x) + ',' for x in table) + '\n' + 'Plain_Text: ' + plait_text
     f.write(to_write)
     f.close()
 
