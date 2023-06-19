@@ -92,9 +92,10 @@ def bin_to_str(my_bin):
 
 def decrypt(table):
     cipher_text = '59346E29456A723B62354B61756D44257871650320277C741D1C0D0C4959590D'
-    plait_text = ''
+    plain_text = ''
     for i in range(0, len(cipher_text), 16):
-        text = cipher_text[i: i+16] 
+        text = cipher_text[i: i+16]
+        
         text = initial_permuation(text)
         left , right = text[:len(text) // 2], text[len(text) // 2:]
         before_straight_pbox = function(right)
@@ -115,11 +116,11 @@ def decrypt(table):
         # convert hex to ascii
         answer = bytes.fromhex(answer).decode('utf-8')
 
-        plait_text += answer
-
+        plain_text += answer
+    plain_text = plain_text[:24]
     f = open('answer.txt', 'w')
     to_write = ''
-    to_write += 'Table: ' + ''.join(str(x) + ',' for x in table) + '\n' + 'Plain_Text: ' + plait_text
+    to_write += 'Table: ' + ''.join(str(x) + ',' for x in table) + '\n' + 'Plain_Text: ' + plain_text
     f.write(to_write)
     f.close()
 
